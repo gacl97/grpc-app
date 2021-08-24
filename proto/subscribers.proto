@@ -1,0 +1,35 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package subscribers;
+
+service SubscribersService {
+  rpc CreateSubscriber (CreateSubscriberDto) returns (SubscriberResponse) {}
+  rpc FindAllSubscribers (google.protobuf.Empty) returns (FindAllSubscribersResponse) {}
+  rpc FindOneSubscribers (FindOneSubscriberRequest) returns (SubscriberResponse) {}
+}
+
+message Void {}
+
+message Subscriber {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message SubscriberResponse {
+  Subscriber subscriber = 1;
+}
+
+message CreateSubscriberDto {
+  string name = 1;
+  string email = 2;
+}
+
+message FindAllSubscribersResponse {
+  repeated Subscriber subscribers = 1;
+}
+
+message FindOneSubscriberRequest {
+  string id = 1;
+}
